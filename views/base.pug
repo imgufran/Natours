@@ -1,42 +1,29 @@
 doctype html
 html(lang='en')
   head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width')
-    link(rel='stylesheet' href='css/style.css')
-    link(rel='shortcut icon' type='image/png' href='img/favicon.png')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
-    title Natours | Exciting tours for adventurous people
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width')
+      link(rel='stylesheet' href='/css/style.css')
+      link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      title Natours | #{title}
 
   body
-    // Header
-    header.header
-    nav.nav.nav--tours
-      a.nav__el(href='#') All tours
-    .header__logo
-      img(src='img/logo-white.png' alt='Natours Logo')
-    nav.nav.nav--user
-      //- a.nav__el(href='#') My Bookings
-      //- a.nav__el(href='#')
-      //-   img.nav__user-img(src='img/user.jpg alt='User photo')
-      //-   span Jonas
-      button.nav__el Login
-      button.nav__el.nav__el--cta Sign Up 
+    // HEADER
+    include _header 
+    
+    // Content
+    block content
+      h1 This is a placeholder heading
 
-      // Content
-      section.overview 
-        h1 hello
+    // Footer
+    include _footer
+
+    //- script(script-src-elem="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js")
+    //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js")
+    //- script(src="/js/mapbox.js")
+    //- script(src='/js/login.js')
+    script(src='/js/bundle.js')
 
 
-      // Footer
-      .footer
-        .footer__logo
-          img(src='img/logo-green.png' alt='Natours logo')
-        ul.footer__nav
-          li
-            a(href="#") About Us
-            a(href="#") Download apps
-            a(href="#") Become a guide
-            a(href="#") Careers
-            a(href="#") Contact
-        p.footer__copyright &copy; by Jonas Schmedtmann. All rights reserved.

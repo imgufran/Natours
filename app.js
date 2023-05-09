@@ -6,28 +6,62 @@ const rateLimit = require("express-rate-limit");
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/userRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const viewRouter = require("./routes/viewRoutes");
 
 const app = express();
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         "connect-src": ["'self'", "https://cdnjs.cloudflare.com"],
+//       },
+//     },
+//   })
+// );
 
 // Pug engine setup
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
 // Serving static files
-app.use(express.static(path.join(__dirname, )));
-
+app.use(express.static(path.join(__dirname, "public")));
 
 console.log(process.env.NODE_ENV);
 
 //? MIDDLEWAREs
-// Security Http headers
-app.use(helmet());
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'", "http://127.0.0.1:3000/*"],
+//       baseUri: ["'self'"],
+//       fontSrc: ["'self'", "https:", "data:"],
+//       scriptSrc: ["'self'", "https://*.cloudflare.com"],
+//       scriptSrc: [
+//         "'self'",
+//         "https://*.stripe.com",
+//         "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js",
+//       ],
+//       frameSrc: ["'self'", "https://*.stripe.com"],
+//       objectSrc: ["'none'"],
+//       styleSrc: ["'self'", "https:", "unsafe-inline"],
+//       upgradeInsecureRequests: [],
+//     },
+//   })
+// );
 
 // Development logging
 if (process.env.NODE_ENV === "development") {
@@ -44,6 +78,7 @@ app.use("/api", limiter);
 
 // express.json() -> Middleware -> Body parser, reading data from body into req.body
 app.use(express.json({ limit: "10kb" }));
+app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -67,18 +102,12 @@ app.use(
 
 // Test middleware
 app.use((req, res, next) => {
-  // console.log(req.headers);
+  console.log(req.cookies);
   next();
 });
 
 // Mounting Routes
-app.get("/", (req, res) => {
-  res.status(200).render("base", {
-    tour: "The forest hiker",
-    user: "Jonas"
-  });
-})
-
+app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/reviews", reviewRouter);
