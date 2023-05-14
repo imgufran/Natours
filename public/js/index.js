@@ -16,12 +16,12 @@ const bookBtn = document.getElementById("book-tour");
 // VALUES
 
 // DELEGATION
-// if (mapBox) {
-//   const locations = JSON.parse(
-//     document.getElementById(mapBox).dataset.locations
-//   );
-//   displayMap(locations);
-// }
+if (mapBox) {
+  const locations = JSON.parse(
+    document.getElementById("map").dataset.locations
+  );
+  displayMap(locations);
+}
 
 if (loginForm) {
   loginForm.addEventListener("submit", function (e) {

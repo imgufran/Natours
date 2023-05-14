@@ -573,12 +573,10 @@ const userPasswordForm = document.querySelector(".form-user-password");
 const bookBtn = document.getElementById("book-tour");
 // VALUES
 // DELEGATION
-// if (mapBox) {
-//   const locations = JSON.parse(
-//     document.getElementById(mapBox).dataset.locations
-//   );
-//   displayMap(locations);
-// }
+if (mapBox) {
+    const locations = JSON.parse(document.getElementById("map").dataset.locations);
+    (0, _mapbox.displayMap)(locations);
+}
 if (loginForm) loginForm.addEventListener("submit", function(e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
@@ -7132,8 +7130,8 @@ exports.constants = {
 };
 
 },{"68a897eb99bc32b8":"8hjhE","ec46eb71b49ebe44":"2WyL8","a86b10fb87539ff5":"k1utz","8c382fc73a0f0c0c":"busIB","a6642ad6f1e4e676":"g38Hg","a7b322b0fee7aec4":"d4idn","135d7b49b83c47ec":"hwD3y","a084d220412940ff":"jbRNy","371618d1acb1c6a8":"9Rcg1","2bd36edef538dd13":"h9Rdh","8bc7ad6119d43e9":"k3tsT"}],"8hjhE":[function(require,module,exports) {
-var process = require("a4958b14620a84f");
 var global = arguments[3];
+var process = require("a4958b14620a84f");
 "use strict";
 // limit of Crypto.getRandomValues()
 // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
@@ -12239,8 +12237,8 @@ Stream.prototype.pipe = function(dest, options) {
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
-var global = arguments[3];
 var process = require("43097be1c14bb4c2");
+var global = arguments[3];
 "use strict";
 module.exports = Readable;
 /*<replacement>*/ var Duplex;
@@ -15045,8 +15043,8 @@ module.exports = function(iterations, keylen) {
 };
 
 },{}],"T9r9Q":[function(require,module,exports) {
-var process = require("e1df6f5daebbf3a7");
 var global = arguments[3];
+var process = require("e1df6f5daebbf3a7");
 var defaultEncoding;
 /* istanbul ignore next */ if (global.process && global.process.browser) defaultEncoding = "utf-8";
 else if (global.process && global.process.version) {
@@ -23113,8 +23111,8 @@ exports.pipeline = require("645139ccce45a6aa");
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
-var global = arguments[3];
 var process = require("c99670ba3371ce4b");
+var global = arguments[3];
 "use strict";
 module.exports = Readable;
 /*<replacement>*/ var Duplex;
@@ -46241,8 +46239,8 @@ function compare(a, b) {
 }
 
 },{"445379add7485366":"4Szbv","ffc8f113f636b6f6":"e2JgG","e500919af9a16b30":"iaxu0","d0a0e30b0fc830da":"3pDum","9158fb215d9e7697":"e594P","561a3c0351ffb974":"2WyL8","2aee721205e01ce2":"fFkPV","d8422439f10a52ce":"eW7r9"}],"k3tsT":[function(require,module,exports) {
-var process = require("d4ec936a6a614e1a");
 var global = arguments[3];
+var process = require("d4ec936a6a614e1a");
 "use strict";
 function oldBrowser() {
     throw new Error("secure random number generation not supported by this browser\nuse chrome, FireFox or Internet Explorer 11");
@@ -46545,8 +46543,8 @@ http.METHODS = [
 ];
 
 },{"e8b8d63fc2789119":"csW06","761facb53307937e":"47huq","5ad583247be07825":"93zjj","120f56beb1e36e48":"iqSVp","fd8d7f5ebe9ad162":"7qjc7"}],"csW06":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("497737bf88898e37");
+var global = arguments[3];
 var Buffer = require("3f065e4bf0ed5a82").Buffer;
 var capability = require("2b87b7ced9e189e9");
 var inherits = require("1561c36372dee3c1");
@@ -46865,9 +46863,9 @@ xhr = null // Help gc
 ;
 
 },{}],"47huq":[function(require,module,exports) {
+var Buffer = require("48c3484f6baaf284").Buffer;
 var global = arguments[3];
 var process = require("ed4bd96eb3e74eb2");
-var Buffer = require("48c3484f6baaf284").Buffer;
 var capability = require("618748c58e483b23");
 var inherits = require("1fd521d058e4a8a4");
 var stream = require("22d13476f07da189");

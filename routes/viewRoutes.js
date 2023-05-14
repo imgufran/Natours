@@ -17,4 +17,4 @@ router.get("/my-tours", authController.protect, viewsController.getMyTours);
 
 router.post("/submit-user-data", authController.protect, viewsController.updateUserData);
 
-module.exports = router;  
+module.exports = router;

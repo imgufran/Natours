@@ -19,68 +19,7 @@ const viewRouter = require("./routes/viewRoutes");
 const app = express();
 
 // Set security HTTP Headers
-app.use(
-  helmet({
-    crossOriginEmbedderPolicy: false,
-  })
-);
- 
-// Further HELMET configuration for Security Policy (CSP)
-const scriptSrcUrls = [
-  'https://api.tiles.mapbox.com/',
-  'https://api.mapbox.com/',
-  'https://*.cloudflare.com',
-  'https://js.stripe.com/v3/',
-  'https://checkout.stripe.com',
-];
-const styleSrcUrls = [
-  'https://api.mapbox.com/',
-  'https://api.tiles.mapbox.com/',
-  'https://fonts.googleapis.com/',
-  'https://www.myfonts.com/fonts/radomir-tinkov/gilroy/*',
-  ' checkout.stripe.com',
-];
-const connectSrcUrls = [
-  'https://*.mapbox.com/',
-  'https://*.cloudflare.com',
-  'http://127.0.0.1:3000',
-  'http://127.0.0.1:52191',
-  '*.stripe.com',
-];
- 
-const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com'];
- 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: [],
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'self'", ...scriptSrcUrls],
-      workerSrc: ["'self'", 'blob:'],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-      objectSrc: [],
-      imgSrc: ["'self'", 'blob:', 'data:'],
-      fontSrc: ["'self'", ...fontSrcUrls],
-      frameSrc: ['*.stripe.com', '*.stripe.network'],
-    },
-  })
-);
-
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: false,
-//   })
-// );
-
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         "connect-src": ["'self'", "https://cdnjs.cloudflare.com"],
-//       },
-//     },
-//   })
-// );
+app.use(helmet());
 
 // Pug engine setup
 app.set("view engine", "pug");
@@ -92,26 +31,6 @@ app.use(express.static(path.join(__dirname, "public")));
 console.log(process.env.NODE_ENV);
 
 //? MIDDLEWAREs
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'", "http://127.0.0.1:3000/*"],
-//       baseUri: ["'self'"],
-//       fontSrc: ["'self'", "https:", "data:"],
-//       scriptSrc: ["'self'", "https://*.cloudflare.com"],
-//       scriptSrc: [
-//         "'self'",
-//         "https://*.stripe.com",
-//         "https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js",
-//       ],
-//       frameSrc: ["'self'", "https://*.stripe.com"],
-//       objectSrc: ["'none'"],
-//       styleSrc: ["'self'", "https:", "unsafe-inline"],
-//       upgradeInsecureRequests: [],
-//     },
-//   })
-// );
-
 // Development logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
