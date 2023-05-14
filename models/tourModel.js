@@ -55,7 +55,6 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       validate: {
         validator: function (val) {
-          console.log(this);
           return val < this.get("price");
         },
         message: "Discount price ({VALUE}) should be below regular price"
@@ -155,7 +154,6 @@ tourSchema.pre("save", function (next) {
 //* Query middleware
 // tourSchema.pre("find", function (next) {
 tourSchema.pre(/^find/, function (next) {
-  console.log("inside query middleware");
   this.find({ secretTour: { $ne: true } });
   this.start = Date.now();
   next();
@@ -170,10 +168,10 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-tourSchema.post(/^find/, function (docs, next) {
-  console.log("Query took: ", Date.now() - this.start);
-  next();
-});
+// tourSchema.post(/^find/, function (docs, next) {
+//   console.log("Query took: ", Date.now() - this.start);
+//   next();
+// });
 
 
 

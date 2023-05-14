@@ -10,13 +10,15 @@
     "start": "nodemon server.js",
     "start:prod": "set NODE_ENV=production&& nodemon server.js",
     "debug": "ndb server.js",
-    "watch:js": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundled"
+    "watch:js": "parcel watch ./public/js/index.js --dist-dir ./public/js/bundled",
+    "build:js": "parcel build ./public/js/index.js --dist-dir ./public/js/bundled"
   },
   "author": "Gufran",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "core-js": "^3.30.2",
     "dotenv": "^16.0.3",

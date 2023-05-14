@@ -47,8 +47,6 @@ if (userDataForm) {
     form.append("email", document.getElementById("email").value);
     form.append("photo", document.getElementById("photo").files[0]);
 
-    console.log(form);
-
     updateSettings(form, "data");
   });
 }
@@ -77,9 +75,6 @@ if (userPasswordForm) {
     document.getElementById("password-confirm").value = "";
   });
 }
-
-console.log("💥💥");
-console.log(bookBtn);
 
 if (bookBtn) {
   bookBtn.addEventListener("click", function (e) {

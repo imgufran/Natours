@@ -7,6 +7,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -73,6 +74,9 @@ app.use(
 app.use((req, res, next) => {
   next();
 });
+
+// Compression middleware
+app.use(compression());
 
 // Mounting Routes
 app.use("/", viewRouter);
